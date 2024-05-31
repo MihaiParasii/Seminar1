@@ -1,17 +1,18 @@
 cmake_minimum_required(VERSION 3.27)
-project(Lab3 C)
+project(Lab5 C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 23)
 
-add_executable(Lab3 main.c
-        struct.h
+add_executable(Lab5 main.c
         funcs.c
         funcs.h
-        BinaryTree.c
-        BinaryTree.h
-        Node.c
-        Node.h
-        Person.c
-        Person.h
-        includes.h
+        ex1_private.c
+        ex1_private.h
+        helpers_funcs.c
+        helpers_funcs.h
+        ex2_private.c
+        ex2_private.h
+        ex3_private.c
+        ex3_private.h
+        struct.h
 )

@@ -1,42 +1,59 @@
+#include <stdlib.h>
 #include "funcs.h"
-#include "includes.h"
+#include "helpers_funcs.h"
+#include "ex1_private.h"
+#include "ex2_private.h"
+#include "ex3_private.h"
 
-ListOptionsStruct *create_struct_of_options(ListOption *list_options, int length) {
-	assert(list_options);
-	assert(length);
+void ex1() {
+	Array array_with_length = {
+		4, malloc(sizeof(int) * array_with_length.length)
+	};
+	array_with_length.array[0] = 100;
+	array_with_length.array[1] = 1000;
+	array_with_length.array[2] = 10000;
+	array_with_length.array[3] = 100000;
 
-	ListOptionsStruct *list_options_array = calloc(1, sizeof(ListOptionsStruct));
-	list_options_array->list_options = list_options;
-	list_options_array->length = length;
-	return list_options_array;
-}
-
-void read_position(int *position) {
-	assert(position);
-
-	printf("Input position: ");
-	scanf("%d", position);
-}
-
-int read_option() {
-	int option;
-	printf("Choose option: ");
-	scanf("%d", &option);
-	return option;
-}
-
-void print_options(const ListOptionsStruct *options) {
-	assert(options);
-
-	for (int i = 0; i < options->length; ++i) {
-		printf("%d %s\n", ((options->list_options) + i)->type, ((options->list_options) + i)->label);
+	for (int i = 0; i < array_with_length.length; ++i) {
+		Array current_array = {array_with_length.array[i], NULL};
+		print_benchmark(bubble_sort, current_array);
+		print_benchmark(quick_sort, current_array);
 	}
-
+	free(array_with_length.array);
 }
 
-void read_key(int *key) {
-	assert(key);
+void ex2() {
+	Array array_with_length = {
+		4, malloc(sizeof(int) * array_with_length.length)
+	};
 
-	printf("Input key: ");
-	scanf("%d", key);
+	array_with_length.array[0] = 100;
+	array_with_length.array[1] = 1000;
+	array_with_length.array[2] = 10000;
+	array_with_length.array[3] = 100000;
+
+	for (int i = 0; i < array_with_length.length; ++i) {
+		Array current_array = {array_with_length.array[i], NULL};
+		print_benchmark(_linear_search, current_array);
+		print_benchmark(_binary_search, current_array);
+	}
+	free(array_with_length.array);
+}
+
+void ex3() {
+	Array positions = {
+		6, malloc(sizeof(int) * positions.length)
+	};
+	positions.array[0] = 50;
+	positions.array[1] = 100;
+	positions.array[2] = 1000;
+	positions.array[3] = 10000;
+	positions.array[4] = 100000;
+	positions.array[5] = 300000;
+
+	for (int i = 0; i < positions.length; ++i) {
+		Array current_array = {positions.array[i], NULL};
+		print_benchmark(print_fibonacci_number_by_position, current_array);
+	}
+	free(positions.array);
 }
